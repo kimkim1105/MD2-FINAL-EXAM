@@ -26,7 +26,7 @@ public class Service {
     }
     public Contacts searchByName(String name) {
         for (int i = 0; i < contactsList.size(); i++) {
-            if (contactsList.get(i).getName().equals(name)){
+            if (contactsList.get(i).getName().contains(name)){
                 System.out.println(contactsList.get(i));
             }
         }

@@ -144,7 +144,7 @@ public class ContactView {
                 while (true) {
                     System.out.println("Nhap ten");
                     name = scanner.nextLine();
-                    service.searchByphoneNumber(name);
+                    service.searchByName(name);
                     new Main();
                     break;
                 }
