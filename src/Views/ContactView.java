@@ -17,7 +17,7 @@ public class ContactView {
     Service service = new Service();
 
     public void showAll() {
-        System.out.println(contactsList);
+        System.out.println(service.findAll());
         new Main();
     }
 
@@ -28,7 +28,7 @@ public class ContactView {
             phoneNumber = scanner.nextLine();
             if (Validation.isvalid(phoneNumber, Validation.phoneNumber)) {
                 break;
-            }else {
+            } else {
                 System.err.println("sai dinh dang");
                 addContact();
             }
@@ -67,6 +67,9 @@ public class ContactView {
             phoneNumber = scanner.nextLine();
             if (Validation.isvalid(phoneNumber, Validation.phoneNumber)) {
                 break;
+            } else {
+                System.out.println("Nhap lai hoac thoat");
+                new Main();
             }
         }
         if (!service.checkPhone(phoneNumber)) {
@@ -115,19 +118,36 @@ public class ContactView {
     }
 
     public void search() {
-        String phoneNumber;
-        while (true) {
-            System.out.println("Nhap so dien thoai");
-            phoneNumber = scanner.nextLine();
-            if (Validation.isvalid(phoneNumber, Validation.phoneNumber)) {
+        System.out.println("1.Timn kiem theo so dien thoai" +
+                "\n2. Tim kiem theo ten");
+        System.out.println("Nhap lua chon");
+        String choose = scanner.nextLine();
+        switch (choose) {
+            case "1":
+                String phoneNumber;
+                while (true) {
+                    System.out.println("Nhap so dien thoai");
+                    phoneNumber = scanner.nextLine();
+                    if (Validation.isvalid(phoneNumber, Validation.phoneNumber)) {
+                        break;
+                    }
+                }
+                if (!service.checkPhone(phoneNumber)) {
+                    System.out.println("So dien thoai khong chinh xac");
+                    new Main();
+                }
+                service.searchByphoneNumber(phoneNumber);
+                new Main();
                 break;
-            }
+            case "2":
+                String name;
+                while (true) {
+                    System.out.println("Nhap ten");
+                    name = scanner.nextLine();
+                    service.searchByphoneNumber(name);
+                    new Main();
+                    break;
+                }
         }
-        if (!service.checkPhone(phoneNumber)) {
-            System.out.println("So dien thoai khong chinh xac");
-            new Main();
-        }
-        service.searchByphoneNumber(phoneNumber);
-        new Main();
     }
 }

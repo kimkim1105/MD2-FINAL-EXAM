@@ -34,6 +34,12 @@ public class Main {
             case "5":
                 contactView.search();
                 break;
+            case "6":
+                new Main();
+                break;
+            case "7":
+                new Main();
+                break;
             case "8":
                 System.exit(0);
                 break;

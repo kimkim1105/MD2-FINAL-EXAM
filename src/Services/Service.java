@@ -24,6 +24,14 @@ public class Service {
         }
         return null;
     }
+    public Contacts searchByName(String name) {
+        for (int i = 0; i < contactsList.size(); i++) {
+            if (contactsList.get(i).getName().equals(name)){
+                System.out.println(contactsList.get(i));
+            }
+        }
+        return null;
+    }
     public void editContact(String phoneNumber,String group, String name, String gender,String address, String dateOfBirth, String email){
         for (int i = 0; i < contactsList.size(); i++) {
             if (contactsList.get(i).getPhoneNumber().equals(phoneNumber)){
