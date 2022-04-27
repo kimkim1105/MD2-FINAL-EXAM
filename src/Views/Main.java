@@ -1,9 +1,13 @@
 package Views;
 
+import ReadWrite.FileCSV;
+import model.Contacts;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    ContactView contactView = new ContactView();
+  View contact = new View();
     Scanner scanner = new Scanner(System.in);
     public Main(){
         System.out.println("-----CHƯƠNG TRÌNH QUẢN LÝ DANH BẠ-----");
@@ -20,28 +24,51 @@ public class Main {
         String choose = scanner.nextLine();
         switch (choose){
             case "1":
-                contactView.showAll();
+                contact.showContactList();
                 break;
             case "2":
-                contactView.addContact();
+                contact.addContact();
                 break;
             case "3":
-                contactView.editContactByphoneNumber();
+                contact.editContactByphoneNumber();
                 break;
             case "4":
-                contactView.delete();
+                contact.delete();
                 break;
             case "5":
-                contactView.search();
+                contact.search();
                 break;
             case "6":
+                System.out.println("Xac nhan doc du lieu tu file (Y/N)");
+                String makeChoose = scanner.nextLine();
+                switch (makeChoose){
+                    case "Y":
+                        FileCSV.getList();
+                        break;
+                    case "N":
+                        new Main();
+                        break;
+                }
                 new Main();
                 break;
             case "7":
+                System.out.println("Xac nhan ghi du lieu vao file (Y/N)");
+                String choose2 = scanner.nextLine();
+                switch (choose2){
+                    case "Y":
+                        FileCSV.writeToFile((ArrayList<Contacts>) contact.contactsList);
+                        break;
+                    case "N":
+                        new Main();
+                        break;
+                }
                 new Main();
                 break;
             case "8":
                 System.exit(0);
+                break;
+            default:
+                new Main();
                 break;
         }
     }
